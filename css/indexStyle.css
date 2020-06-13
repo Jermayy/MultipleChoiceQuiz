@@ -22,9 +22,10 @@ body {
 
 .quizContainer {
     text-align: center;
+    display: none;
 }
 
-.btn {
+. .btn {
     background-color: #42a1f5;
     border: 2px solid black;
     color: white;
