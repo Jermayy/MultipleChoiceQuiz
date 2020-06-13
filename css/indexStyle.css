@@ -15,3 +15,26 @@ body {
     padding: 50px 40px;
     border-radius: 10px;
 }
+
+.quizContainer h4 {
+    font-size: 40px;
+}
+
+.quizContainer {
+    text-align: center;
+}
+
+.btn {
+    background-color: #42a1f5;
+    border: 2px solid black;
+    color: white;
+    font-size: 20px;
+    border-radius: 30px;
+    padding: 10px 40px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn:focus {
+    outline: none;
+}
