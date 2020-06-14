@@ -6,7 +6,8 @@ const optionBox = document.querySelector(".optionBox");
 const feedbackContainer = document.querySelector(".feedbackContainer");
 const feedbackText = document.querySelector(".answerFeedback");
 
-const questionIndex = 0;
+let questionIndex = 0;
+let wrongCounter = 0;
 
 
 
@@ -65,13 +66,37 @@ function check(element) {
         element.classList.add("correct");
         feedbackText.textContent = "Correct!"
         feedbackContainer.classList.remove("hide")
+        console.log(wrongCounter);
+        resetState();
+        setNextQuestion();
     } else {
         console.log('wrong');
         element.classList.add("wrong");
         feedbackText.textContent = "Wrong!"
         feedbackContainer.classList.remove("hide")
+        wrongCounter++;
+        console.log(wrongCounter);
+        resetState();
+        setNextQuestion();
+
     }
 }
+
+
+function resetState() {
+    console.log('reset');
+    while (optionBox.firstChild) {
+        optionBox.removeChild(optionBox.firstChild)
+    }
+}
+
+
+function setNextQuestion() {
+    console.log("hi");
+    questionIndex++;
+    load();
+}
+
 
 window.onload = () => {
     load();
@@ -99,80 +124,3 @@ window.onload = () => {
 
 //  5. when user enters name
 //     - Load scoreboard.html with previous highscores and names in descending order of scores
-
-
-
-// startButton.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     console.log("started");
-//     shuffledQuestions = questions.sort(() => Math.random() - .5);
-//     currentQuestionIndex = 0;
-//     startContainer.classList.add('hide');
-//     quizContainer.classList.remove('hide');
-//     setNextQuestion();
-
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function setNextQuestion() {
-//     console.log('button');
-//     showQuestion()
-// }
-
-// function showQuestions() {
-//     questionText.innerText = shuffledQuestions[currentQuestionIndex].question
-
-//     questions.answers.forEach(answer => {
-//         const button = document.createElement('button');
-//         button.innerText = answer.text;
-//         button.classList.add('btn');
-//         button.classList.add('option');
-
-//         optionBox.appendChild(button);
-//     })
-
-
-// for (let i = 0; i < 4; i++) {
-//     let button = document.createElement('button');
-//     button.innerText = questions.answers[i].text;
-//     button.classList.add('btn');
-//     button.classList.add('option');
-//     console.log(button.innerText);
-//     if (answer.correct) {
-//         button.dataset.correct = answer.correct
-//     }
-//     button.addEventListener('click', selectAnswer)
-//     optionBox.appendChild(button);
-// }
-
-
-
-// questions.answers.forEach(answer => {
-//     const button = document.createElement('button')
-//     button.innerText = answers.text
-
-
-
-
-
-// function selectAnswer() {
-
-// }
-
-// function setHighscores() {
-
-// }
