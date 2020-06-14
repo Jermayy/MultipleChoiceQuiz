@@ -1,10 +1,42 @@
-//  Questions:
+const startButton = document.querySelector("#startbtn");
+const startContainer = document.querySelector(".quizContainer");
+const quizContainer = document.querySelector(".quizQuestionContainer")
+const questionText = document.querySelector(".questionText");
+const optionBox = document.querySelector(".optionBox");
 
-// 1.Commonly used data types DO NOT include: [1.strings, 2.booleans, 3. alerts, 4.numbers]
-// 2.The condition in an if/else statement is enclosed within ____. [1.quotes, 2.curly brackets, 3.parentheses, 4.square brackets]
-// 3. Arrays in Javascript can be used to store _____. [1. numbers and strings, 2. other arrays, 3.booleans, 4.all of the above]
-// 4. String values must be enclosed within ____ when being assigned to variables [1.commas, 2. curly brackets, 3.quotes 4.parentheses]
-// 5. A very useful tool used during development and debugging for printing content to the debugger is: [1.Javascript, 2.terminal/bash 3.for loops 4.console.log]
+
+
+let shuffledQuestions, currentQuestionIndex
+
+const questions = [{
+        question: "Commonly used data types DO NOT include:",
+        options: ['Strings', 'Booleans', 'Alerts', 'Numbers'],
+        answer: 2
+    },
+
+    {
+        question: "The condition in an if/else statement is enclosed within ____.",
+        options: ['Quotes', 'Curly brackets', 'Parentheses', 'Square brackets'],
+        answer: 2
+    },
+    {
+        question: "Arrays in Javascript can be used to store _____.",
+        options: ['Numbers and strings', 'Other arrays', 'Booleans', 'all of the above', ],
+        answer: 3
+    },
+    {
+        question: "String values must be enclosed within ____ when being assigned to variables",
+        options: ['commas', 'curly brackets', 'quotes', 'Parentheses', ],
+        answer: 2
+    },
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        options: ['Javascript', 'terminal/bash', 'for loops', 'console.log', ],
+        answer: 2
+    },
+]
+console.log(questions);
+
 
 
 
@@ -27,21 +59,79 @@
 //  5. when user enters name
 //     - Load scoreboard.html with previous highscores and names in descending order of scores
 
-const startButton = document.getElementById('startbtn');
 
 
-function startGame() {
+// startButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+//     console.log("started");
+//     shuffledQuestions = questions.sort(() => Math.random() - .5);
+//     currentQuestionIndex = 0;
+//     startContainer.classList.add('hide');
+//     quizContainer.classList.remove('hide');
+//     setNextQuestion();
 
-}
+// })
 
-function setNextQuestion() {
 
-}
 
-function selectAnswer() {
 
-}
 
-function setHighscores() {
 
-}
+
+
+
+
+
+
+
+
+
+
+// function setNextQuestion() {
+//     console.log('button');
+//     showQuestion()
+// }
+
+// function showQuestions() {
+//     questionText.innerText = shuffledQuestions[currentQuestionIndex].question
+
+//     questions.answers.forEach(answer => {
+//         const button = document.createElement('button');
+//         button.innerText = answer.text;
+//         button.classList.add('btn');
+//         button.classList.add('option');
+
+//         optionBox.appendChild(button);
+//     })
+
+
+// for (let i = 0; i < 4; i++) {
+//     let button = document.createElement('button');
+//     button.innerText = questions.answers[i].text;
+//     button.classList.add('btn');
+//     button.classList.add('option');
+//     console.log(button.innerText);
+//     if (answer.correct) {
+//         button.dataset.correct = answer.correct
+//     }
+//     button.addEventListener('click', selectAnswer)
+//     optionBox.appendChild(button);
+// }
+
+
+
+// questions.answers.forEach(answer => {
+//     const button = document.createElement('button')
+//     button.innerText = answers.text
+
+
+
+
+
+// function selectAnswer() {
+
+// }
+
+// function setHighscores() {
+
+// }
