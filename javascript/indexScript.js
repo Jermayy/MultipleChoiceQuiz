@@ -26,3 +26,22 @@
 
 //  5. when user enters name
 //     - Load scoreboard.html with previous highscores and names in descending order of scores
+
+const startButton = document.getElementById('startbtn');
+
+
+function startGame() {
+
+}
+
+function setNextQuestion() {
+
+}
+
+function selectAnswer() {
+
+}
+
+function setHighscores() {
+
+}

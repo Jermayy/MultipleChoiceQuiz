@@ -29,7 +29,7 @@ body {
     text-align: center;
 }
 
-. .btn {
+.btn {
     background-color: #42a1f5;
     border: 2px solid black;
     color: white;
@@ -97,4 +97,14 @@ body {
 .option:hover {
     background-color: #42a1f5;
     color: white;
+}
+
+.feedbackContainer {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.answerFeedback {
+    font-size: 30px;
+    text-align: center;
 }
