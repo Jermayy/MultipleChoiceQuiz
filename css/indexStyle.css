@@ -7,6 +7,10 @@ body {
     box-sizing: border-box;
 }
 
+.hide {
+    display: none;
+}
+
 .customBox {
     max-width: 800px;
     background-color: white;
