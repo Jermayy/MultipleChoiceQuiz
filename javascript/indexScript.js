@@ -32,7 +32,7 @@ const questions = [{
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         options: ['Javascript', 'terminal/bash', 'for loops', 'console.log', ],
-        answer: 2
+        answer: 1
     },
 ]
 console.log(questions);
@@ -49,7 +49,19 @@ function createOptions() {
         option.innerText = questions[questionIndex].options[i];
         option.classList.add('btn');
         option.classList.add('option');
+        option.id = i;
+        option.setAttribute("onclick", "check(this)");
         optionBox.appendChild(option);
+    }
+}
+
+function check(element) {
+    console.log(element.innerText);
+    const id = element.id;
+    if (id == questions[questionIndex].answer) {
+        console.log('correct')
+    } else {
+        console.log('wrong');
     }
 }
 
