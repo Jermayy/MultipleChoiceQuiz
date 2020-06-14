@@ -11,9 +11,10 @@ body {
     max-width: 800px;
     background-color: white;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 50px;
     padding: 50px 40px;
     border-radius: 10px;
+    position: relative;
 }
 
 .quizContainer h4 {
@@ -39,3 +40,38 @@ body {
 .btn:focus {
     outline: none;
 }
+
+.quizQuestionContainer .questionBox {
+    padding: 40px 30px;
+    margin-top: 40px;
+    border-radius: 10px;
+    border: 2px solid black;
+    text-align: center;
+    background-color: #42a1f5;
+    color: white;
+}
+
+.quizQuestionContainer .questionBox .questionText {
+    font-size: 30px;
+    text-align: center;
+}
+
+.quizQuestionContainer .quizTime {
+    height: 70px;
+    width: 70px;
+    background-color: #42a1f5;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    border-radius: 50%;
+    line-height: 68px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: -35px;
+    z-index: 1;
+}
+
+.quizQuestionContainer .optionBox .option {}
