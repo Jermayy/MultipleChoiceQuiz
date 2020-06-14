@@ -3,8 +3,10 @@ const startContainer = document.querySelector(".quizContainer");
 const quizContainer = document.querySelector(".quizQuestionContainer")
 const questionText = document.querySelector(".questionText");
 const optionBox = document.querySelector(".optionBox");
+const feedbackContainer = document.querySelector(".feedbackContainer");
+const feedbackText = document.querySelector(".answerFeedback");
 
-const questionIndex = 4;
+const questionIndex = 0;
 
 
 
@@ -60,8 +62,14 @@ function check(element) {
     const id = element.id;
     if (id == questions[questionIndex].answer) {
         console.log('correct')
+        element.classList.add("correct");
+        feedbackText.textContent = "Correct!"
+        feedbackContainer.classList.remove("hide")
     } else {
         console.log('wrong');
+        element.classList.add("wrong");
+        feedbackText.textContent = "Wrong!"
+        feedbackContainer.classList.remove("hide")
     }
 }
 
