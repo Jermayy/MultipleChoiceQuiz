@@ -4,9 +4,9 @@ const quizContainer = document.querySelector(".quizQuestionContainer")
 const questionText = document.querySelector(".questionText");
 const optionBox = document.querySelector(".optionBox");
 
+const questionIndex = 4;
 
 
-let shuffledQuestions, currentQuestionIndex
 
 const questions = [{
         question: "Commonly used data types DO NOT include:",
@@ -36,6 +36,27 @@ const questions = [{
     },
 ]
 console.log(questions);
+
+function load() {
+    console.log('testing load');
+    questionText.innerHTML = questions[questionIndex].question;
+    createOptions();
+};
+
+function createOptions() {
+    for (let i = 0; i < questions[questionIndex].options.length; i++) {
+        const option = document.createElement('button');
+        option.innerText = questions[questionIndex].options[i];
+        option.classList.add('btn');
+        option.classList.add('option');
+        optionBox.appendChild(option);
+    }
+}
+
+window.onload = () => {
+    load();
+}
+
 
 
 
