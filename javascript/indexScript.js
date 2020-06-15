@@ -7,10 +7,10 @@ const feedbackContainer = document.querySelector(".feedbackContainer");
 const feedbackText = document.querySelector(".answerFeedback");
 const inputContainer = document.querySelector(".inputContainer");
 const timer = document.querySelector(".remainingTime");
+const score = document.querySelector(".score");
 
 let questionIndex = 0;
-let wrongCounter = 0;
-let timerRemaining = 60;
+let timeLeft = 60;
 
 const questions = [{
         question: "Commonly used data types DO NOT include:",
@@ -55,12 +55,10 @@ function loadStart() {
     inputContainer.classList.add('hide');
 }
 
-startButton.addEventListener('click', load);
+startButton.addEventListener('click', startQuiz);
 
 
 function load() {
-    console.log('testing load');
-    startTimer();
     if (questionIndex < 5) {
 
 
@@ -71,26 +69,51 @@ function load() {
 
     } else {
         showHighscoreInput();
+
     }
 
 };
 
 
 function startTimer() {
-    setInterval(function() {
-        timer.textContent = timerRemaining;
-        timerRemaining--;
+
+    timeInterval = setInterval(function() {
+        timer.textContent = timeLeft;
+        timeLeft--;
+
+        if (timer.textContent == 0) {
+            clearInterval(timeInterval);
+            showHighscoreInput()
+
+
+        }
+
+        if (questionIndex > 4) {
+            clearInterval(timeInterval);
+            showHighscoreInput()
+
+        }
+
     }, 1000);
-
-
 }
+
+
+function startQuiz() {
+    startTimer();
+
+    questionText.innerHTML = questions[questionIndex].question;
+    startContainer.classList.add('hide');
+    quizContainer.classList.remove('hide');
+    createOptions();
+}
+
 
 
 function createOptions() {
 
     for (let i = 0; i < questions[questionIndex].options.length; i++) {
         const option = document.createElement('button');
-        option.innerText = questions[questionIndex].options[i];
+        option.innerText = questions[questionIndex].options[i + 1];
         option.classList.add('btn');
         option.classList.add('option');
         option.id = i;
@@ -100,7 +123,6 @@ function createOptions() {
 }
 
 function check(element) {
-    console.log(element.innerText);
     const id = element.id;
 
     if (id == questions[questionIndex].answer) {
@@ -108,16 +130,17 @@ function check(element) {
         element.classList.add("correct");
         feedbackText.textContent = "Correct!"
         feedbackContainer.classList.remove("hide")
-        console.log(wrongCounter);
+
+
         resetState();
         setNextQuestion();
     } else {
         console.log('wrong');
         element.classList.add("wrong");
+        timeLeft = timeLeft - 5
+        timer.textContent = timeLeft
         feedbackText.textContent = "Wrong!"
         feedbackContainer.classList.remove("hide")
-        wrongCounter++;
-        console.log(wrongCounter);
         resetState();
         setNextQuestion();
     }
@@ -141,10 +164,22 @@ function setNextQuestion() {
 
 
 function showHighscoreInput() {
-    console.log('testHighscore');
+    currentScore = timer.textContent;
+    console.log(currentScore);
     quizContainer.classList.add('hide');
     feedbackContainer.classList.add('hide');
     inputContainer.classList.remove('hide');
+
+    if (timeLeft > 0) {
+        score.textContent = "you scored: " + currentScore;
+        return currentScore;
+    } else if (timeLeft <= 0) {
+        score.textContent = "you scored: 0";
+        currentScore = 0;
+        return currentScore;
+    }
+
+
 }
 
 
@@ -156,13 +191,12 @@ function showHighscoreInput() {
 //     - start timer (60 seconds)
 // 3. when user clicks an answer option
 //     - check if answer is correct and display 'correct' or 'wrong'
-//     - if answer is WRONG: add to counter for point deduction at end of quiz
-//     - load next question
+//     - if answer is WRONG: deduct 5 seconds from counter
 
 //  4. When user answers final question:
 //     - show if answer is correct or Not
-//     - deduct any points from remaining time left to calculate score
 //     - display score to user and display input for user to add name
+//     - if timeLeft = 0 or less display less and user's final score = 0 
 
 //  5. when user enters name
 //     - Load scoreboard.html with previous highscores and names in descending order of scores
