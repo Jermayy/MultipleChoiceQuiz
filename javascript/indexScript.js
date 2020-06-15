@@ -8,9 +8,13 @@ const feedbackText = document.querySelector(".answerFeedback");
 const inputContainer = document.querySelector(".inputContainer");
 const timer = document.querySelector(".remainingTime");
 const score = document.querySelector(".score");
+const userName = document.querySelector(".userName");
+const submitButton = document.querySelector(".submitBtn");
 
 let questionIndex = 0;
 let timeLeft = 60;
+let currentScore = "";
+let highscoresList = JSON.parse(localStorage.getItem("highscoresList")) || [];
 
 const questions = [{
         question: "Commonly used data types DO NOT include:",
@@ -41,12 +45,9 @@ const questions = [{
 ]
 console.log(questions);
 
-
-
 window.onload = () => {
     loadStart();
 }
-
 
 function loadStart() {
 
@@ -57,10 +58,8 @@ function loadStart() {
 
 startButton.addEventListener('click', startQuiz);
 
-
 function load() {
     if (questionIndex < 5) {
-
 
         questionText.innerHTML = questions[questionIndex].question;
         startContainer.classList.add('hide');
@@ -74,7 +73,6 @@ function load() {
 
 };
 
-
 function startTimer() {
 
     timeInterval = setInterval(function() {
@@ -84,19 +82,15 @@ function startTimer() {
         if (timer.textContent == 0) {
             clearInterval(timeInterval);
             showHighscoreInput()
-
-
         }
 
         if (questionIndex > 4) {
             clearInterval(timeInterval);
             showHighscoreInput()
-
         }
 
     }, 1000);
 }
-
 
 function startQuiz() {
     startTimer();
@@ -106,8 +100,6 @@ function startQuiz() {
     quizContainer.classList.remove('hide');
     createOptions();
 }
-
-
 
 function createOptions() {
 
@@ -144,12 +136,9 @@ function check(element) {
         resetState();
         setNextQuestion();
     }
-
 }
 
-
 function resetState() {
-    console.log('reset');
     while (optionBox.firstChild) {
         optionBox.removeChild(optionBox.firstChild)
     }
@@ -157,7 +146,6 @@ function resetState() {
 
 
 function setNextQuestion() {
-    console.log("hi");
     questionIndex++;
     load();
 }
@@ -175,12 +163,40 @@ function showHighscoreInput() {
         return currentScore;
     } else if (timeLeft <= 0) {
         score.textContent = "you scored: 0";
-        currentScore = 0;
+        currentScore = "0";
         return currentScore;
     }
-
-
 }
+
+
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault
+
+    let currentUserName = userName.value.trim();
+
+    if (currentUserName === "") {
+        return;
+    }
+
+    let highscore = {
+        Name: currentUserName,
+        Score: currentScore
+    };
+
+    console.log(highscore);
+
+    highscoresList.push(highscore);
+
+
+    localStorage.setItem("highscoresList", JSON.stringify(highscoresList));
+});
+
+
+
+
+
+
+
 
 
 //  1.When user opens quiz app
