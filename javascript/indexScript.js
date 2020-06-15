@@ -6,11 +6,11 @@ const optionBox = document.querySelector(".optionBox");
 const feedbackContainer = document.querySelector(".feedbackContainer");
 const feedbackText = document.querySelector(".answerFeedback");
 const inputContainer = document.querySelector(".inputContainer");
+const timer = document.querySelector(".remainingTime");
 
 let questionIndex = 0;
 let wrongCounter = 0;
-
-
+let timerRemaining = 60;
 
 const questions = [{
         question: "Commonly used data types DO NOT include:",
@@ -60,6 +60,7 @@ startButton.addEventListener('click', load);
 
 function load() {
     console.log('testing load');
+    startTimer();
     if (questionIndex < 5) {
 
 
@@ -75,10 +76,17 @@ function load() {
 };
 
 
+function startTimer() {
+    setInterval(function() {
+        timer.textContent = timerRemaining;
+        timerRemaining--;
+    }, 1000);
+
+
+}
+
 
 function createOptions() {
-
-
 
     for (let i = 0; i < questions[questionIndex].options.length; i++) {
         const option = document.createElement('button');
@@ -94,8 +102,6 @@ function createOptions() {
 function check(element) {
     console.log(element.innerText);
     const id = element.id;
-
-
 
     if (id == questions[questionIndex].answer) {
         console.log('correct')
@@ -115,8 +121,6 @@ function check(element) {
         resetState();
         setNextQuestion();
     }
-
-
 
 }
 
@@ -142,13 +146,6 @@ function showHighscoreInput() {
     feedbackContainer.classList.add('hide');
     inputContainer.classList.remove('hide');
 }
-
-
-
-
-
-
-
 
 
 //  1.When user opens quiz app
