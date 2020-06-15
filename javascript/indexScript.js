@@ -5,6 +5,7 @@ const questionText = document.querySelector(".questionText");
 const optionBox = document.querySelector(".optionBox");
 const feedbackContainer = document.querySelector(".feedbackContainer");
 const feedbackText = document.querySelector(".answerFeedback");
+const inputContainer = document.querySelector(".inputContainer");
 
 let questionIndex = 0;
 let wrongCounter = 0;
@@ -40,13 +41,45 @@ const questions = [{
 ]
 console.log(questions);
 
+
+
+window.onload = () => {
+    loadStart();
+}
+
+
+function loadStart() {
+
+    quizContainer.classList.add('hide');
+    feedbackContainer.classList.add('hide');
+    inputContainer.classList.add('hide');
+}
+
+startButton.addEventListener('click', load);
+
+
 function load() {
     console.log('testing load');
-    questionText.innerHTML = questions[questionIndex].question;
-    createOptions();
+    if (questionIndex < 5) {
+
+
+        questionText.innerHTML = questions[questionIndex].question;
+        startContainer.classList.add('hide');
+        quizContainer.classList.remove('hide');
+        createOptions();
+
+    } else {
+        showHighscoreInput();
+    }
+
 };
 
+
+
 function createOptions() {
+
+
+
     for (let i = 0; i < questions[questionIndex].options.length; i++) {
         const option = document.createElement('button');
         option.innerText = questions[questionIndex].options[i];
@@ -61,6 +94,9 @@ function createOptions() {
 function check(element) {
     console.log(element.innerText);
     const id = element.id;
+
+
+
     if (id == questions[questionIndex].answer) {
         console.log('correct')
         element.classList.add("correct");
@@ -78,8 +114,10 @@ function check(element) {
         console.log(wrongCounter);
         resetState();
         setNextQuestion();
-
     }
+
+
+
 }
 
 
@@ -98,9 +136,16 @@ function setNextQuestion() {
 }
 
 
-window.onload = () => {
-    load();
+function showHighscoreInput() {
+    console.log('testHighscore');
+    quizContainer.classList.add('hide');
+    feedbackContainer.classList.add('hide');
+    inputContainer.classList.remove('hide');
 }
+
+
+
+
 
 
 
