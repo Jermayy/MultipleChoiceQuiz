@@ -189,6 +189,7 @@ submitButton.addEventListener('click', function(event) {
 
 
     localStorage.setItem("highscoresList", JSON.stringify(highscoresList));
+    window.location.href = "highscore.html";
 });
 
 
