@@ -159,10 +159,10 @@ function showHighscoreInput() {
     inputContainer.classList.remove('hide');
 
     if (timeLeft > 0) {
-        score.textContent = "you scored: " + currentScore;
+        score.textContent = "You Scored: " + currentScore;
         return currentScore;
     } else if (timeLeft <= 0) {
-        score.textContent = "you scored: 0";
+        score.textContent = "You Scored: 0";
         currentScore = "0";
         return currentScore;
     }
